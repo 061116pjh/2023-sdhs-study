@@ -1,13 +1,13 @@
 import Button from '../../../components/button/index';
 import * as S from './styled';
 
-function CreateItemBox({onChange, createTodo}){
+function CreateItemBox({value, onChange, createTodo}){
   const handleInputValue = (e) => {
-    onChange(e.target.value);
+    onChange(e.target.value)
   }
   return(
     <S.InputBox>
-        <S.Input placeholder='To do를 입력해주세요.' onChange={handleInputValue} />
+        <S.Input value={value} placeholder='To do를 입력해주세요.' onChange={handleInputValue} />
         <Button onClick={createTodo}>등록</Button>
     </S.InputBox>
   );
