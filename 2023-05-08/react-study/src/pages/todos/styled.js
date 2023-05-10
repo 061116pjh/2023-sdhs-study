@@ -11,4 +11,17 @@ export const Container = styled.div`
   padding: 16px;
 `;
 
-export const Title = styled.h2``;
+export const Title = styled.h2`
+  font-size: 40px;
+  color: #333;
+  margin: 50px 0;
+`;
+
+export const Body = styled.div`
+  width: 100%;
+  height: 100%;
+  background: #E5F9DB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
