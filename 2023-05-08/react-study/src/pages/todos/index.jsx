@@ -16,17 +16,34 @@ function Todos(){
   }
 
   const deleteTodo = (id) => {
-    const findIndex = todos.findIndex(v => v.id === id);
-    setTodos(prevState => {
-      const tempArr = [...prevState];
-      tempArr.splice(findIndex, 1);
-      return tempArr;
-    });
+    // const findIndex = todos.findIndex(v => v.id === id);
+    // setTodos(prevState => {
+    //   const tempArr = [...prevState];
+    //   tempArr.splice(findIndex, 1);
+    //   return tempArr;
+    // });
+
+    const filterTodos = todos.filter(v => v.id !== id);
+    setTodos(filterTodos);
   }
 
-  // useEffect(() => {
-  //   localStorage.setItem.toString("todo", JSON.stringify(todos));
-  // }, [todos]);
+  useEffect(() => {
+    try{
+      const parseTodos = JSON.parse(localStorage.getItem('todos'));
+      setTodos(parseTodos);
+    } catch(error){
+      console.log(error);
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      const stringifyTodos = JSON.stringify(todos);
+      localStorage.setItem("todos", stringifyTodos);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [todos]);
 
   return (
     <S.Body>
