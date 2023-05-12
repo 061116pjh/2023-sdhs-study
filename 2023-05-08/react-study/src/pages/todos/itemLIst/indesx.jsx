@@ -1,10 +1,13 @@
 import * as S from './styled';
 import Todo from '../../../components/Todo';
 
-function ItemList({todos, deleteTodo}){
+function ItemList({todos, deleteTodo, serchValue}){
   return (
     <S.ItemList>
-      {todos.map(({id, name}) => {
+      {
+      todos
+      .filter(({name}) => name.includes(serchValue))
+      .map(({id, name}) => {
       const handleDeleteTodo = () => {
         deleteTodo(id);
       }
