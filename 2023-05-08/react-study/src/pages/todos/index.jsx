@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import * as S from './styled';
 import CreateItemBox from './CreateItemBox/index';
+import SerchInput from '../../components/SerchInput/index';
 import ItemList from './itemLIst/indesx';
 import { v4 as uuidv4 } from 'uuid';
 
 function Todos(){
   const [todoName, setTodoName] = useState("");
   const [todos, setTodos] = useState([]);
+  const [serchValue, setSerchValue] = useState("");
 
   const createTodo = () => {
     if(!todoName.trim()) return;
@@ -16,13 +18,6 @@ function Todos(){
   }
 
   const deleteTodo = (id) => {
-    // const findIndex = todos.findIndex(v => v.id === id);
-    // setTodos(prevState => {
-    //   const tempArr = [...prevState];
-    //   tempArr.splice(findIndex, 1);
-    //   return tempArr;
-    // });
-
     const filterTodos = todos.filter(v => v.id !== id);
     setTodos(filterTodos);
   }
@@ -49,8 +44,9 @@ function Todos(){
     <S.Body>
       <S.Container>
       <S.Title>To do List</S.Title>
+      <SerchInput onChange={(value) => {setSerchValue(value)}} />
       <CreateItemBox value={todoName} onChange={setTodoName} createTodo={createTodo} />
-      <ItemList todos={todos} deleteTodo={deleteTodo} />
+      <ItemList todos={todos} serchValue={serchValue} deleteTodo={deleteTodo} />
       </S.Container>
     </S.Body>
   );
