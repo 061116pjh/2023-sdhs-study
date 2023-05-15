@@ -5,29 +5,33 @@ import SerchInput from '../../components/SerchInput/index';
 import ItemList from './itemLIst/indesx';
 import Button from '../../components/button/index';
 import { v4 as uuidv4 } from 'uuid';
+import {useDispatch, useSelector} from 'react-redux';
+import {handleCreateTodo, handleDeleteTodo, handleDeleteSelectedTodos} from '../../reduce/todos';
 
 function Todos(){
   const [todoName, setTodoName] = useState("");
-  const [todos, setTodos] = useState([]);
+  const [tempTodos, setTodos] = useState([]);
   const [serchValue, setSerchValue] = useState("");
   const [selectedTodoIds, setSelectdTodoIds] = useState([]);
-
+  const dispatch = useDispatch();
+  const {todos} = useSelector(state => state.todos);
   const createTodo = () => {
+
     if(!todoName.trim()) return;
-    
     setTodoName('');
-    setTodos(prevState => [...prevState, {id: uuidv4(), name: todoName}]);
+    dispatch(handleCreateTodo({id: uuidv4(), name: todoName}));
   }
 
   const deleteTodo = (id) => {
-    const filterTodos = todos.filter(v => v.id !== id);
-    setTodos(filterTodos);
+    dispatch(handleDeleteTodo(id));
   }
 
   const deleteSelectedTodos = () => {
-    setTodos(prevState => {
-      return prevState.filter(todo => !selectedTodoIds.includes(todo.id));
-    });
+    // setTodos(prevState => {
+    //   return prevState.filter(todo => !selectedTodoIds.includes(todo.id));
+    // });
+
+    dispatch(handleDeleteSelectedTodos({selectedTodoIds}));
   }
 
   useEffect(() => {
