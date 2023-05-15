@@ -26,18 +26,12 @@ function Todos(){
   }
 
   const deleteSelectedTodos = () => {
-    // setTodos(prevState => {
-    //   return prevState.filter(todo => !selectedTodoIds.includes(todo.id));
-    // });
-
     dispatch(handleDeleteSelectedTodos({selectedTodoIds}));
   }
 
   useEffect(() => {
     try{
       const parseTodos = JSON.parse(localStorage.getItem('todos'));
-      // setTodos(parseTodos);
-
       dispatch(setTodos(parseTodos));
     } catch(error){
       console.log(error);
@@ -48,8 +42,6 @@ function Todos(){
     try {
       const stringifyTodos = JSON.stringify(todos);
       localStorage.setItem("todos", stringifyTodos);
-
-      // dispatch(setLocalstorage(todos));
     } catch (error) {
       console.log(error);
     }
