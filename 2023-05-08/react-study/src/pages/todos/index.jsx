@@ -6,11 +6,10 @@ import ItemList from './itemLIst/indesx';
 import Button from '../../components/button/index';
 import { v4 as uuidv4 } from 'uuid';
 import {useDispatch, useSelector} from 'react-redux';
-import {handleCreateTodo, handleDeleteTodo, handleDeleteSelectedTodos} from '../../reduce/todos';
+import {handleCreateTodo, handleDeleteTodo, handleDeleteSelectedTodos, setTodos} from '../../reduce/todos';
 
 function Todos(){
   const [todoName, setTodoName] = useState("");
-  const [tempTodos, setTodos] = useState([]);
   const [serchValue, setSerchValue] = useState("");
   const [selectedTodoIds, setSelectdTodoIds] = useState([]);
   const dispatch = useDispatch();
@@ -37,7 +36,9 @@ function Todos(){
   useEffect(() => {
     try{
       const parseTodos = JSON.parse(localStorage.getItem('todos'));
-      setTodos(parseTodos);
+      // setTodos(parseTodos);
+
+      dispatch(setTodos(parseTodos));
     } catch(error){
       console.log(error);
     }
@@ -47,6 +48,8 @@ function Todos(){
     try {
       const stringifyTodos = JSON.stringify(todos);
       localStorage.setItem("todos", stringifyTodos);
+
+      // dispatch(setLocalstorage(todos));
     } catch (error) {
       console.log(error);
     }
