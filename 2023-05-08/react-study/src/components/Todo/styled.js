@@ -6,7 +6,6 @@ export const Container = styled.li`
   width: 450px;
   min-height: 50px;
   align-items: center;
-  justify-content: space-around;
   border-radius: 5px;
   justify-content: space-between;
   padding: 0 15px;
