@@ -23,7 +23,8 @@ const MenuList = (props) => {
       </S.List>
     );
   }else{
-    return console.log("error") ;
+    console.log("error");
+    return <></>;
   }
 }
 
