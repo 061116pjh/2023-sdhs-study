@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import type { ChangeEvent } from 'react';
+import {v4 as uuidv4} from 'uuid';
 
 import type {Todo} from './types/todo';
 import Input from './component/input';
@@ -18,14 +19,23 @@ function App() {
     })
   }
 
-  const handleTodoName = (e:ChangeEvent<HTMLInputElement>) => {
-    setTodoName(e.target.value);
+  const handleSearchValue = ({target: {value}}:ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(value);
+  }
+
+  const handleTodoName = ({target: {value}}:ChangeEvent<HTMLInputElement>) => {
+    setTodoName(value);
+  }
+
+  const addTodo = () => {
+    setTodos(prevState => [...prevState, {id: uuidv4(), name: todoName}]);
   }
 
   return (
     <div className="App">
       <Input onChange={handleTodoName} />
-      <Input />
+      <button onClick={addTodo}>Todo 추가</button>
+      <Input onChange={handleSearchValue} />
       {todoName}
       <TodoList todos={todos} searchValue={searchValue} deleteTodo={handleDeleteTodo} setSelectedTodoIds={setSelectedTodoIds} />
     </div>
