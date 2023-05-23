@@ -22,3 +22,31 @@ const mixMapData = mixData.map(v => {
   const toStringData = String(temp);
   return toStringData.length;
 });
+
+
+
+// 2023-05-23
+type OpacityData = { opacity: number };
+type MyType = { color: string };
+
+type MyMixType = MyType & OpacityData;
+
+const color: MyMixType = {color: 'red', opacity: 1};
+
+interface MyOpacity{
+  opacity: number;
+}
+interface MyInterface extends MyOpacity{
+  color: string;
+}
+const color2: MyInterface = {color: 'red', opacity: 1};
+
+interface Human {
+  name: string,
+  old: number
+}
+
+interface JH extends Human{
+  job: string;
+}
+const js : JH = {name: 'jh', old: 18, job: 'student'}
