@@ -2,7 +2,8 @@ import * as S from './styled';
 import Input from '../../../component/input';
 import Button from '../../../component/button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faMicrophone, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faMicrophone, faBars, faCamera } from '@fortawesome/free-solid-svg-icons';
+import { faBell } from '@fortawesome/free-regular-svg-icons';
 import LogoImage from '../../../image/youtubeLogo.png';
 
 const Header = () => {
@@ -20,8 +21,8 @@ const Header = () => {
         <FontAwesomeIcon icon={faMicrophone} />
       </S.Center>
       <S.End>
-        <S.Icon />
-        <S.Icon />
+        <FontAwesomeIcon icon={faCamera} />
+        <FontAwesomeIcon icon={faBell} />
         <S.Profile />
       </S.End>
     </S.Container>
