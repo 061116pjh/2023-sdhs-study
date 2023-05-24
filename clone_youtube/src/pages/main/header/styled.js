@@ -14,6 +14,7 @@ export const Start = styled.div`
   height: 40px;
   display: flex;
   background: red;
+  font-size: 25px;
 `;
 
 export const Center = styled.div`
