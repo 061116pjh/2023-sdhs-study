@@ -1,19 +1,19 @@
-import {InputHTMLAttributes} from 'react';
+import {InputHTMLAttributes, KeyboardEvent} from 'react';
+import * as S from './styled';
 
-type MyType = {color: string}; // 1
-interface MyInterface {color: string;} // 1
+// type MyType = {color: string}; // 1
+// interface MyInterface {color: string;} // 1
 
-interface Todo{
-  title: string,
-  desctiption: string;
-}
+// interface Todo{
+//   title: string,
+//   desctiption: string;
+// }
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
-  color?: string;
-}
+interface InputProps extends InputHTMLAttributes<HTMLInputElement>{}
 
 const Input = (props: InputProps) => {
-  return <input {...props} />;
+
+  return <S.Input {...props} />;
 }
 
 export default Input;
