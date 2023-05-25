@@ -15,7 +15,6 @@ function Todos(){
   const dispatch = useDispatch();
   const {todos} = useSelector(state => state.todos);
   const createTodo = () => {
-
     if(!todoName.trim()) return;
     setTodoName('');
     dispatch(handleCreateTodo({id: uuidv4(), name: todoName}));
