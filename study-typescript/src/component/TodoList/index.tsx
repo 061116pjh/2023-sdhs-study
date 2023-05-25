@@ -1,34 +1,39 @@
 import type { DispatchSetStateAction } from '../../types/uill';
 import type {Todo as TodoType} from '../../types/todo';
 import Todo from '../todo';
+import * as S from './styled';
 
 interface TodoListProps{
   todos: TodoType[];
   searchValue: string;
   deleteTodo: (id: TodoType['id']) => void;
   setSelectedTodoIds: DispatchSetStateAction<TodoType['id'][]>;
+  editedTodoId: TodoType['id'] | undefined;
+  toggleEditTodo: (id: TodoType['id']) => void;
+  setEditedName: (name: TodoType['name']) => void;
+  editTodo: () => void;
 }
 
 
-const TodoList = ({todos, searchValue, deleteTodo, setSelectedTodoIds}:TodoListProps) => {
-  return <ul>
+const TodoList = ({todos, searchValue, editedTodoId, deleteTodo, toggleEditTodo, editTodo, setEditedName}:TodoListProps) => {
+  return (
+  <S.ListWrap>
     {
-      todos.map(({id, name}) =>{
+      todos
+      .filter(({name}) => name.includes(searchValue))
+      .map(({id, name}) =>{
         const handleDeleteTodo = () => {
           deleteTodo(id);
         }
-        const handleSelectedTodo = (checked: boolean) => {
-          if(checked){
-            setSelectedTodoIds((prevState) => [...prevState, id]);
-          }else{
-            setSelectedTodoIds((prevState) => prevState.filter((prevId) => prevId !== id));
-          }
-          console.log({id, checked});
+        const handleEditTodo = () => {
+          toggleEditTodo(id);
         }
-        return <Todo key={id} name={name} deleteTodo={handleDeleteTodo} handleSeleted={handleSelectedTodo} />
+        const isEdited = editedTodoId === id;
+        return <Todo key={id} name={name} isEdited={isEdited} setEditedName={setEditedName} deleteTodo={handleDeleteTodo} editTodo={editTodo} toggleEditTodo={handleEditTodo} />
       })
     }
-  </ul>;
+  </S.ListWrap>
+  );
 }
 
 export default TodoList;
