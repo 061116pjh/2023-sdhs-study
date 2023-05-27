@@ -1,4 +1,4 @@
-import {InputHTMLAttributes, KeyboardEvent} from 'react';
+import {InputHTMLAttributes} from 'react';
 import * as S from './styled';
 
 // type MyType = {color: string}; // 1
